@@ -35,7 +35,7 @@ Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027).
 
 ---
 
-## Featured Projects
+## Projects
 
 ### CONTINUUM
 > `React` `TypeScript` `Node.js` `MongoDB` `Dexie.js` `WebRTC` `Socket.io` `i18n`
@@ -71,23 +71,6 @@ Role-based campus management platform for CBIT Hyderabad. Access control enforce
 
 ---
 
-### Syncpad
-> `React 19` `Liveblocks` `Yjs` `Monaco Editor` `LiveKit` `MongoDB` `Clerk`
-
-Real-time collaborative coding interview platform. Built in 24 hours at CBIT Hacktoberfest 2025. **Special Mention** among ~500 teams.
-
-| What | How |
-|---|---|
-| Collaborative editor | Liveblocks + Yjs CRDT shared typing buffers + Monaco |
-| A/V conferencing | LiveKit WebRTC SDK |
-| Code execution | Judge0 via RapidAPI |
-| Resume analysis | Mistral AI — skill extraction and summary generation |
-| Session replay | Full interview recording and playback |
-
-Contributions: quiz module, gamified daily quiz, Resume Analyzer, frontend UI and routing.
-
----
-
 ### EngiQuery
 > `FastAPI` `Python` `Groq (Llama 3.3 70B)` `ChromaDB` `sentence-transformers`
 
@@ -105,17 +88,6 @@ All embeddings and vector storage are local.
 ```
 
 ---
-
-### RAY — Resume-based Application Yield
-> `Next.js 14` `TypeScript` `FastAPI` `Mistral AI` `TF-IDF` `Scikit-learn`
-
-Resume-to-job matching platform. Upload PDF or DOCX → Mistral extracts skills and experience → TF-IDF cosine similarity scores live job listings from JSearch and Adzuna.
-
-[Live](https://job-recommender-sigma.vercel.app)
-
----
-
-## AI / ML Projects
 
 ### PathVQA — Multimodal Visual Question Answering
 > `PyTorch` `EfficientNet-B0` `ResNet50` `Faster R-CNN` `BiLSTM` `GRU` `BAN` `Stacked Attention`
@@ -148,32 +120,6 @@ FashionBot        Mistral LLM conversational style assistant
 
 ---
 
-### Hindi News Classification
-> `IndicBERTv2` `Flask` `PyTorch` `EasyOCR` `BeautifulSoup` `HuggingFace Spaces`
-
-End-to-end Hindi NLP pipeline with three input modes: manual text, live scraping, and OCR from images/PDFs.
-
-```
-mBERT (Multilingual)  73.98%
-XLM-RoBERTa           78.06%
-IndicBERTv2           79.57%   selected
-
-Sources: Amar Ujala, Dainik Jagran, Navbharat Times, BBC Hindi
-```
-
-[Live](https://huggingface.co/spaces/Sathvik2954/hindi-samachar-2)
-
----
-
-### Federated Learning
-> `Python` `PyTorch` `Distributed Training`
-
-Privacy-preserving distributed ML system covering federated learning, model aggregation strategies, and non-IID data handling.
-
----
-
-## Data Science Projects
-
 ### Telecom Churn Analysis
 > `Python` `Scikit-learn` `RandomForest` `Pandas`
 
@@ -190,26 +136,6 @@ Top drivers
   2. Month-to-month contract — 42.7% churn rate
   3. No tech support
 ```
-
----
-
-### Customer Reviews Topic Modeling
-> `Gensim` `BERTopic` `Scikit-learn` `UMAP` `HDBSCAN` `spaCy`
-
-Unsupervised topic discovery across 630,000+ app reviews from 11 e-commerce platforms.
-
-```
-Methods: LDA, NMF, LSA, BERTopic, LDA+Bigrams   K=10 across all methods
-
-NMF ranked #1 on coherence (0.5739) and diversity (0.8333) — best on all 11 individual apps
-
-10 consensus topics — all HIGH CONFIDENCE
-  Delivery Delays · Refunds · Customer Service · Price & Quality
-  App Bugs · Search UX · Positive Experience · Fashion & Sizing
-  Account & Payments · In-store & Inventory
-```
-
-[Dataset](https://www.kaggle.com/datasets/peesarisathvikreddy/customer-e-commerce-reviews)
 
 ---
 
