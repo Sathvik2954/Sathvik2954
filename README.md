@@ -2,7 +2,7 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:0d1117&height=160&section=header&text=Peesari%20Sathvik%20Reddy&fontSize=40&fontColor=58a6ff&fontAlignY=42&animation=fadeIn" />
 
-**AI/ML Engineer · Full Stack Developer · Applied AI Researcher**
+**AI/ML Engineer · Full Stack Developer · Problem Solver**
 
 B.Tech Artificial Intelligence & Machine Learning · CBIT Hyderabad · CGPA 9.12
 
@@ -17,15 +17,9 @@ B.Tech Artificial Intelligence & Machine Learning · CBIT Hyderabad · CGPA 9.12
 
 ## About Me
 
-I build complete systems — from offline sync engines and agentic AI workflows to multimodal research pipelines and campus-wide platforms.
+I am a sociable and impact-driven developer with experience delivering ML and full-stack solutions through internships, research, and collaborative projects. I enjoy translating real-world problems into practical technology — and thrive in collaborative environments where taking initiative matters.
 
-My work spans healthcare, education, developer tools, NLP, computer vision, and business analytics. I care about production correctness, real metrics, and engineering decisions that hold up under pressure.
-
-- Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027)
-- Completed 5-month AI/ML training program at IIIT Hyderabad — iHub-Data (May–Sep 2025)
-- Research presented at ICAIATI-2025 · Paper under publication
-- Special Mention · CBIT Hacktoberfest 2025 · ~500 teams
-- Vice President · Robotics & Innovation Club · CBIT (2024–2026)
+Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027).
 
 ---
 
@@ -294,7 +288,7 @@ NMF ranked #1 on coherence (0.5739) and diversity (0.8333) — best on all 11 in
 ---
 
 <div align="center">
-<sub>Hyderabad, India &nbsp;·&nbsp; Open to internships and research collaborations &nbsp;·&nbsp; reddysathvik2005@gmail.com</sub>
+<sub>Hyderabad, India &nbsp;·&nbsp; Open to internships &nbsp;·&nbsp; reddysathvik2005@gmail.com</sub>
 </div>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:0d1117&height=100&section=footer" />
