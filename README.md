@@ -40,178 +40,56 @@ Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027).
 ### CONTINUUM
 > `React` `TypeScript` `Node.js` `Express` `MongoDB` `Dexie.js` `WebRTC` `Socket.io` `PWA` `i18next`
 
-Offline-first healthcare continuity platform that connects patients and doctors through a single portable health record — one that works with or without internet. The core engineering problem: how do you build a medical system that never loses data, even when the network drops mid-session?
+Offline-first healthcare continuity platform connecting patients and doctors through a single portable health record that works with or without internet. Patients record symptoms by voice, track vitals, upload documents, and consult doctors asynchronously — all data queued locally in IndexedDB and synced automatically on reconnect. Includes scheduled WebRTC video calls with call audio saved to the patient timeline, conflict resolution via HTTP 409 on stale writes, and multilingual support in English, Hindi, and Telugu.
 
-**Architecture**
+**Roles:** Patient · Doctor · Admin
 
-```
-Patient (offline)
-  Symptom recording  →  IndexedDB blobs store (Dexie.js)
-  Consultation form  →  IndexedDB sync_queue  (pending)
-  Vitals log         →  IndexedDB sync_queue  (pending)
-
-[network returns]
-
-Sync engine fires on browser 'online' event
-  Upload audio blobs  →  Express /uploads/audio/
-  POST pending records →  Express → MongoDB Atlas
-  Mark as synced       →  IndexedDB update
-  Pull fresh data      →  Refresh IndexedDB cache
-```
-
-**Key Engineering Decisions**
-
-| Problem | Solution |
-|---|---|
-| Offline data loss | Dexie.js IndexedDB queue; nothing written to server until connectivity confirmed |
-| Stale write conflicts | Client sends `updatedAt`; server returns HTTP 409 on version mismatch; user notified, no silent loss |
-| Video calls on mobile networks | Socket.io WebRTC signaling + Xirsys TURN for NAT traversal; call audio auto-saved to patient timeline |
-| Multi-language support | i18next with English, Hindi, Telugu; language detection from browser |
-| File storage | Multer for audio, documents, call recordings; client-side image compression before upload |
-
-**Roles:** Patient · Doctor · Admin — fully separate dashboards, route guards, and data scopes  
-**Live →** https://continuum-alpha-two.vercel.app
+[Live](https://continuum-alpha-two.vercel.app)
 
 ---
 
 ### SETHU
-> `Next.js 14` `App Router` `TypeScript` `Supabase` `PostgreSQL` `RLS` `FastAPI` `Mistral API` `RapidOCR` `pdf-lib` `pg_cron`
+> `Next.js 14` `TypeScript` `Supabase` `PostgreSQL` `RLS` `FastAPI` `Mistral API` `RapidOCR` `pdf-lib` `pg_cron`
 
-Role-based campus management platform for CBIT Hyderabad. Serves four roles — student, faculty, head of department, administrator — with access control enforced at the database layer through Row Level Security, not the application layer. Every query is automatically filtered to what that role is permitted to see.
+Role-based campus management platform for CBIT Hyderabad serving students, faculty, HODs, and administrators. Access control is enforced at the database layer through Row Level Security — every query auto-filters to what that role is permitted to see. Timetables can be imported from PDFs via OCR; the AI study planner (Mistral) reads subject annotations and the day's schedule to return a ranked priority list. Requests auto-generate approval PDFs, and pg_cron handles exam reminders and deadline alerts.
 
-**Key Features by Role**
+**Roles:** Student · Faculty · HOD · Admin
 
-| Role | Core Capabilities |
-|---|---|
-| Student | Timetable view, exam schedule, subject annotations, AI study planner, formal request submission, resume profile builder |
-| Faculty | Define subjects, manage timetables via PDF import, broadcast deadlines and notifications by year/section |
-| HOD | Department-scoped approvals queue, event permission routing |
-| Admin | Staff account provisioning, institution-wide notifications, full audit log |
-
-**Key Engineering Decisions**
-
-| Problem | Solution |
-|---|---|
-| Access control at scale | RLS policies on every Supabase table; wrong-role queries return empty, not errors |
-| Timetable PDF import | RapidOCR extracts structure → Mistral cleans and formats → faculty reviews before commit |
-| AI study planner | Mistral reads subject difficulty/relevance annotations + actual day's free hours → ranked study list |
-| Approval document generation | pdf-lib generates branded PDFs on approval; signed URLs for private attachments |
-| Automated reminders | Supabase pg_cron jobs for exam reminders at 7d / 3d / 1d; last-day deadline alerts |
-| Login rate limiting | DB-backed rate limit table; failed attempts tracked per email with auto-reset |
-
-**Live →** https://sethu-pied.vercel.app
+[Live](https://sethu-pied.vercel.app)
 
 ---
 
 ### Syncpad
-> `React 19` `Vite` `Liveblocks` `Yjs` `Monaco Editor` `LiveKit` `Node.js` `MongoDB` `Clerk` `Judge0`
+> `React 19` `Liveblocks` `Yjs` `Monaco Editor` `LiveKit` `Node.js` `MongoDB` `Clerk` `Judge0`
 
-Real-time collaborative coding interview platform built in 24 hours at CBIT Hacktoberfest 2025. **Special Mention** among ~500 teams for product completeness and innovation.
+Real-time collaborative coding interview platform built in 24 hours at CBIT Hacktoberfest 2025 — **Special Mention among ~500 teams**. Features multi-user CRDT-based code editing via Liveblocks and Yjs, audio/video conferencing via LiveKit WebRTC, code execution through Judge0, session replay for post-interview review, and a gamified daily quiz system. Resume analysis powered by Mistral AI extracts skills and generates candidate summaries.
 
-**Architecture**
-
-```
-Collaborative editor  →  Liveblocks + Yjs CRDT shared typing buffers + Monaco Editor
-Audio/video           →  LiveKit WebRTC SDK with server-side room management
-Code execution        →  Judge0 (RapidAPI) with hidden test case evaluation
-Authentication        →  Clerk with protected routes and role-based access
-Session replay        →  Full interview recording and post-session playback
-Email notifications   →  Nodemailer with automated scheduling confirmations
-```
-
-**Feature Breakdown**
-
-| Feature | Tech | Detail |
-|---|---|---|
-| Multi-user code editor | Liveblocks + Yjs | CRDT-based conflict-free shared editing; no last-write-wins data loss |
-| A/V conferencing | LiveKit | WebRTC rooms with server SDK token generation |
-| Problem library | MongoDB | Custom and hidden test cases, autosave on every keystroke |
-| Resume analyzer | Mistral AI | Skill extraction, experience summary, candidate profile generation |
-| Gamified quiz | Custom | Daily quiz with streaks, scoring, and leaderboard |
-| Session replay | LiveKit recording | Full interview rewatch for interviewers post-session |
-
-**Contributions:** Quiz module and gamified daily quiz system, Resume Analyzer (Mistral integration), frontend UI components, route architecture
+**Contributions:** Quiz module, gamified daily quiz, Resume Analyzer, frontend UI and routing
 
 ---
 
 ## AI / ML Projects
 
 ### PathVQA — Multimodal Visual Question Answering
-> `PyTorch` `EfficientNet-B0` `ResNet50` `Faster R-CNN` `BiLSTM` `GRU` `BAN` `Stacked Attention Networks`
+> `PyTorch` `EfficientNet-B0` `ResNet50` `Faster R-CNN` `BiLSTM` `GRU` `BAN` `Stacked Attention`
 
-Research project designing and benchmarking three multimodal VQA architectures on the PathVQA dataset — 32,799 QA pairs across 4,998 pathology images. The core challenge: open-ended medical questions require both precise visual localization and language understanding.
-
-**Architectures Implemented**
-
-| Method | Vision Encoder | Text Encoder | Fusion | Overall EM | Yes/No | Open-Ended EM | F1 |
-|---|---|---|---|---|---|---|---|
-| Method 1 | Faster R-CNN | GRU | Bilinear Attention Network (BAN) | 46.03% | 78.03% | 34.26% | 34.77% |
-| Method 2 | EfficientNet-B0 | BiLSTM | Bilinear Fusion | **60.39%** | 79.27% | **53.45%** | **53.82%** |
-| Method 3 | ResNet50 | LSTM | Stacked Attention + LayerNorm | 56.24% | **82.27%** | 46.66% | 47.82% |
-
-**Key Findings**
-
-- EfficientNet-B0 + Bilinear Fusion outperforms region-based Faster R-CNN by 14.36 percentage points on overall EM
-- Fusion strategy (bilinear vs attention) has more impact on open-ended performance than backbone complexity
-- ResNet50 + Stacked Attention achieves the highest Yes/No accuracy (82.27%) through iterative visual reasoning
-- CNNs outperform Vision Transformers on pathology images — domain-specific texture matters more than global context
-
-**Dataset:** He et al., 2020 — PathVQA (arxiv.org/abs/2003.10286)
+Research project designing and benchmarking three multimodal VQA architectures on the PathVQA dataset (32,799 QA pairs, 4,998 pathology images). Implemented region-based visual reasoning with Faster R-CNN + GRU + BAN, global CNN encoding with EfficientNet-B0 + BiLSTM + Bilinear Fusion, and iterative attention with ResNet50 + Stacked Attention. Best result: 60.39% overall exact match and 53.45% open-ended EM with EfficientNet-B0 + Bilinear Fusion. Key finding: fusion strategy has more impact than backbone complexity on pathology images.
 
 ---
 
 ### Zenvia — Fashion Intelligence Platform
-> `Flask` `PyTorch` `ResNet-50` `5-fold Cross Validation` `MediaPipe Pose` `OpenCV` `SerpAPI` `Mistral API` `Cloudinary`
+> `Flask` `PyTorch` `ResNet-50` `MediaPipe Pose` `OpenCV` `SerpAPI` `Mistral API` `Cloudinary`
 
-Full-stack AI platform with five integrated ML modules. **Presented at ICAIATI-2025**, paper under publication.
-
-**Module Breakdown**
-
-| Module | Tech | How It Works |
-|---|---|---|
-| Size Estimation | MediaPipe Pose + OpenCV | Detects 33 body landmarks via webcam; computes shoulder width and torso height; maps to XS–XXXL using a calibrated size chart |
-| Seasonal Color Analysis | ResNet-50 ensemble | 5-fold cross-validation; ensemble prediction with accuracy-weighted voting across 5 saved checkpoints; classifies Winter/Autumn/Spring/Summer |
-| Product Discovery | SerpAPI Google Shopping | Live product search filtered by detected size, color, gender, and category; surfaces Amazon IN, Flipkart, Myntra, AJIO results |
-| Virtual Wardrobe | Cloudinary + localStorage | Drag-and-drop upload, outfit scheduling, email reminders via SMTP, weather-based outfit suggestions via OpenWeatherMap API |
-| FashionBot | Mistral API | Conversational style assistant with chat history, personalized outfit advice, trend information |
-
-**Model Performance**
-
-```
-Dataset         Roboflow seasonal color dataset (~6,770 images)
-Architecture    ResNet-50 with custom fully connected head
-Training        5-fold cross-validation
-Inference       Accuracy-weighted ensemble across 5 fold checkpoints
-Validation Acc  94.18%
-Classes         Winter (Invierno) · Autumn (Otono) · Spring (Primavera) · Summer (Verano)
-```
+Full-stack AI platform with five integrated modules: real-time body size estimation via MediaPipe Pose, seasonal color classification using a 5-fold ResNet-50 ensemble (94.18% validation accuracy), live product discovery via SerpAPI Google Shopping, a virtual wardrobe with outfit scheduling and weather-based suggestions, and a conversational FashionBot powered by Mistral. **Presented at ICAIATI-2025**, paper under publication.
 
 ---
 
 ### Hindi News Classification System
-> `IndicBERTv2` `Flask` `PyTorch` `HuggingFace Transformers` `EasyOCR` `BeautifulSoup` `HuggingFace Spaces` `Docker`
+> `IndicBERTv2` `Flask` `PyTorch` `HuggingFace Transformers` `EasyOCR` `BeautifulSoup` `Docker`
 
-End-to-end Hindi NLP platform that classifies news into five categories through three distinct input modes: typed text, live web scraping, and OCR extraction from images and PDFs.
+End-to-end Hindi NLP platform classifying news headlines into five categories through three input modes: typed text, live scraping from Amar Ujala, Dainik Jagran, Navbharat Times, and BBC Hindi, and OCR extraction from images and PDFs. Fine-tuned IndicBERTv2 outperforms mBERT (73.98%) and XLM-RoBERTa (78.06%) with 79.57% accuracy due to its Indic-specific pretraining. Deployed on HuggingFace Spaces via Docker.
 
-**Model Comparison**
-
-| Model | Accuracy | Notes |
-|---|---|---|
-| mBERT (Multilingual BERT) | 73.98% | General multilingual; weaker on Indic morphology |
-| XLM-RoBERTa | 78.06% | Stronger cross-lingual transfer |
-| IndicBERTv2 | **79.57%** | Selected — pre-trained on Indic corpora; best on Hindi-specific vocabulary |
-
-**Input Modes**
-
-| Mode | Tech | Detail |
-|---|---|---|
-| Manual text | IndicBERTv2 inference | Headline → predicted category + confidence score (%) |
-| Live scraping | BeautifulSoup + Requests | Pulls real-time headlines from Amar Ujala, Dainik Jagran, Navbharat Times, BBC Hindi; deduplicates; classifies each |
-| OCR extraction | EasyOCR + PIL | Upload image or PDF → extract Hindi headings → classify each heading |
-
-**Data Processing:** Hybrid balancing strategy — undersampling large classes + oversampling smaller classes; sentence truncation to first 1–2 sentences; label normalization across 14+ original IndicGLUE categories condensed to 5  
-**Deployment:** HuggingFace Spaces (Docker container)  
-**Live →** https://huggingface.co/spaces/Sathvik2954/hindi-samachar-2
+[Live](https://huggingface.co/spaces/Sathvik2954/hindi-samachar-2)
 
 ---
 
@@ -220,122 +98,25 @@ End-to-end Hindi NLP platform that classifies news into five categories through 
 ### Telecom Churn Analysis
 > `Python` `Scikit-learn` `RandomForest` `Pandas` `Matplotlib` `Seaborn`
 
-Business-driven churn prediction on 7,043 telecom customers. The objective was not to maximize accuracy but to optimize decision threshold for real business ROI — because missing a churning customer (₹2,000 LTV loss) costs four times more than a wasted retention offer (₹500).
-
-**Business Context**
-
-```
-Annual churn rate    26.5%  (~1,900 customers/year)
-LTV per customer     Rs. 2,000
-Retention offer cost Rs. 500
-Annual revenue loss  Rs. 3,800,000 (without intervention)
-```
-
-**Model & Threshold Optimization**
-
-| Metric | Default (0.5) | Optimized (0.45) |
-|---|---|---|
-| Recall | ~76% | **82.4%** |
-| Precision | ~45% | 38.9% |
-| Customers targeted | lower | 861 at-risk customers |
-| Net business value | lower | **Rs. 161,500** |
-
-ROC-AUC: 0.822
-
-**Churn Drivers Identified**
-
-| Driver | Feature Importance | Churn Rate |
-|---|---|---|
-| Tenure < 6 months | 6.64% | 53.3% |
-| Month-to-month contract | 5.85% | 42.7% |
-| No tech support | 5.07% | elevated vs supported customers |
-| 1-year contract | — | 11.3% |
-| 2-year contract | — | 2.8% |
-
-**Segmentation for Targeting**
-
-| Segment | Count | Recommended Action | Budget |
-|---|---|---|---|
-| High risk (0.5–0.7) | 662 | Personal call + Rs.500 discount | Rs. 331,000 |
-| Medium risk (0.35–0.5) | 464 | Email + service check | Rs. 46,400 |
-| Monitor (<0.35) | 283 | No immediate action | — |
+Business-optimized churn prediction on 7,043 telecom customers. Instead of maximizing accuracy, the decision threshold was tuned from 0.5 to 0.45 to prioritize recall — because a missed churning customer (₹2,000 LTV loss) costs four times more than a wasted retention offer (₹500). RandomForest achieved 82.4% recall and 0.822 ROC-AUC, identifying 861 at-risk customers and projecting ₹161,500 net business value. Top churn drivers: tenure under 6 months (53.3% churn rate) and month-to-month contracts (42.7%).
 
 ---
 
 ### Olist E-Commerce Analytics
 > `MySQL 8.0` `Python` `pandas` `SQLAlchemy` `Power BI` `DAX`
 
-End-to-end analytics pipeline on 100,000+ Brazilian e-commerce orders from the Olist marketplace. SQL-first analysis covering six business questions, with findings delivered through a three-page executive Power BI dashboard.
+End-to-end analytics pipeline on 100,000+ Brazilian e-commerce orders from the Olist marketplace. Answered six business questions through 10 SQL queries covering revenue by category, delivery performance by state, late delivery impact on review scores, repeat purchase rate, payment method breakdown, and month-over-month revenue growth. Findings delivered through a three-page executive Power BI dashboard. Key finding: deliveries delayed 4+ days average a 1.86/5.0 review score versus 4.29/5.0 for early deliveries.
 
-**Business Questions & Findings**
-
-| Question | Key Finding |
-|---|---|
-| Revenue by category | Health & Beauty leads at 1,233,131 BRL (8,647 orders); Watches & Gifts second at 1,166,176 BRL |
-| Delivery vs review score | Early deliveries average 4.29/5.0; deliveries delayed 4+ days average 1.86/5.0 — a 2.43-point drop |
-| Delivery performance by state | Significant state-level variance; geolocation data excluded from joins due to duplicate zip code coordinates |
-| Repeat purchase rate | 3.0% — only 2,801 of 93,358 unique customers returned; reflects real marketplace behavior |
-| Payment methods | Credit cards dominate: 12,542,084 BRL across 76,505 orders; avg transaction 163 BRL at 3.5 installments |
-| Revenue growth | Peak: November 2017 at 1,153,364 BRL (+53.6% MoM) driven by Black Friday campaigns |
-
-**SQL Techniques Used**
-
-| Query | Concept |
-|---|---|
-| Monthly revenue trend | CTE + date truncation |
-| MoM growth rate | CTE + `LAG()` window function |
-| Category revenue share | CTE + `SUM() OVER()` |
-| Late delivery impact | `CASE WHEN` + `DATEDIFF()` |
-| Repeat purchase rate | Self-join CTE on customer orders |
-
-**Pipeline:** Kaggle CSV → pandas + SQLAlchemy data loader → MySQL `olist_db` (9 tables) → SQL analysis → Power BI dashboard (3 pages: Business Overview, Delivery & Satisfaction, Customers & Sellers)  
-**Dataset →** https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+[Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ---
 
 ### Customer Reviews Topic Modeling
-> `Python` `Gensim` `BERTopic` `Scikit-learn` `sentence-transformers` `UMAP` `HDBSCAN` `spaCy` `NLTK`
+> `Gensim` `BERTopic` `Scikit-learn` `sentence-transformers` `UMAP` `HDBSCAN` `spaCy` `NLTK`
 
-Large-scale unsupervised NLP pipeline discovering universal complaint and satisfaction themes across 630,000+ app reviews from 11 major e-commerce platforms. Five topic modeling methods benchmarked and aggregated into a consensus topic set via cosine similarity of topic-word vectors.
+Unsupervised topic discovery across 630,000+ app reviews from 11 e-commerce platforms including Amazon, Flipkart, Myntra, and Meesho. Five methods benchmarked — LDA, NMF, LSA, BERTopic, LDA+Bigrams — with results aggregated into a consensus topic set via cosine similarity of topic-word vectors. NMF ranked first on both coherence (0.5739) and diversity (0.8333) across all 11 individual apps. All 10 consensus topics confirmed HIGH CONFIDENCE, covering delivery, refunds, customer service, app bugs, and pricing.
 
-**Dataset**
-
-```
-Platforms    Amazon · Flipkart · Myntra · Meesho · Snapdeal · Alibaba · Aliexpress
-             Lazada · Daraz · Shein · Walmart
-Total        629,989 reviews available
-Sample used  10,000 per app (110,000 total, random seed 42)
-After clean  97,619 reviews retained
-```
-
-**Method Benchmark — Combined Corpus**
-
-| Method | Coherence (c_v) | Diversity | Notes |
-|---|---|---|---|
-| NMF | **0.5739** | **0.8333** | Best on coherence and diversity; #1 across all 11 individual apps |
-| LDA + Bigrams | 0.5363 | 0.7400 | Phrase detection improves topic granularity |
-| LDA | 0.5288 | 0.7800 | Solid baseline |
-| BERTopic | 0.5189 | 0.8296 | 59.6% outlier rate due to review heterogeneity; surfaces niche actionable topics |
-| LSA | 0.4805 | 0.4800 | Weakest diversity |
-
-**Consensus Topics (all 10 confirmed HIGH CONFIDENCE)**
-
-| Topic | Label | Method Agreement |
-|---|---|---|
-| 0 | Account and Payment Issues | 3/5 |
-| 1 | Order Cancellation and Refunds | 5/5 |
-| 2 | App Performance and Bugs | 4/5 |
-| 3 | Delivery Delays | 5/5 |
-| 4 | Search and Browse UX | 5/5 |
-| 5 | Fashion and Sizing | 4/5 |
-| 6 | Positive Experience | 5/5 |
-| 7 | In-store and Inventory | 4/5 |
-| 8 | Customer Service | 5/5 |
-| 9 | Price and Product Quality | 5/5 |
-
-**Key Insight:** Negative reviews contain precise vocabulary (cancel, refund, fake, fraud, crash, freeze). Positive reviews surface only generic sentiment words. BERTopic uniquely identifies niche signals — dark mode requests, wishlist bugs, localisation complaints — missed entirely by bag-of-words methods.
-
-**Dataset →** https://www.kaggle.com/datasets/peesarisathvikreddy/customer-e-commerce-reviews
+[Dataset](https://www.kaggle.com/datasets/peesarisathvikreddy/customer-e-commerce-reviews)
 
 ---
 
