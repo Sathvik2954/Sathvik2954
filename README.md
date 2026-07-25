@@ -85,27 +85,16 @@ Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027).
 
 ## Certifications
 
-| | |
-|---|---|
-| AWS Certified Cloud Practitioner | Amazon Web Services |
-| Certificate of Proficiency in AI/ML | IIIT Hyderabad — iHub-Data · May–Sep 2025 |
+- **AWS Certified Cloud Practitioner** — Amazon Web Services
+- **Certificate of Proficiency in AI/ML** — IIIT Hyderabad · iHub-Data (May–Sep 2025)
 
 ---
 
 ## Achievements
 
-| | |
-|---|---|
-| Special Mention · Hacktoberfest 2025 | ~500 teams · product completeness & innovation |
-| Research Publication | ICAIATI-2025 · Zenvia · Under publication |
-
----
-
-## Extracurricular
-
-| | |
-|---|---|
-| Vice President · Robotics & Innovation Club | CBIT · 2024–2026 |
+- **3rd Place · HackWeek 2026** — Secured 3rd place individually among 1,200+ participants in a COSC week-long hackathon
+- **Special Mention · Hacktoberfest 2025** — Among ~500 teams, for product completeness & innovation
+- **Research Publication** — ICAIATI-2025 · Zenvia · Under publication
 
 ---
 
