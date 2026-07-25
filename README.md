@@ -17,9 +17,9 @@ B.Tech Artificial Intelligence & Machine Learning · CBIT Hyderabad · CGPA 9.20
 
 ## About Me
 
-I am a sociable and impact-driven developer with experience delivering ML and full-stack solutions through internships, research, and collaborative projects. I enjoy translating real-world problems into practical technology — and thrive in collaborative environments where taking initiative matters.
+I am a sociable and impact-driven developer with experience delivering ML and full-stack solutions through internships, research, and collaborative projects. I enjoy translating real-world problems into practical technology, and thrive in collaborative environments where taking initiative matters.
 
-Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027).
+Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023-2027).
 
 ---
 
@@ -85,16 +85,16 @@ Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027).
 
 ## Certifications
 
-- **AWS Certified Cloud Practitioner** — Amazon Web Services
-- **Certificate of Proficiency in AI/ML** — IIIT Hyderabad · iHub-Data (May–Sep 2025)
+- **AWS Certified Cloud Practitioner** - Amazon Web Services
+- **Certificate of Proficiency in AI/ML** - IIIT Hyderabad · iHub-Data (May-Sep 2025)
 
 ---
 
 ## Achievements
 
-- **3rd Place · HackWeek 2026** — Secured 3rd place individually among 1,200+ participants in a COSC week-long hackathon
-- **Special Mention · Hacktoberfest 2025** — Among ~500 teams, for product completeness & innovation
-- **Research Publication** — ICAIATI-2025 · Zenvia · Under publication
+- **3rd Place · HackWeek 2026** - Secured 3rd place individually among 1,200+ participants in a COSC week-long hackathon
+- **Special Mention · Hacktoberfest 2025** - Among ~500 teams, for product completeness & innovation
+- **Research Publication** - ICAIATI-2025 · Zenvia · Under publication
 
 ---
 
