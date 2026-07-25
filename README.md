@@ -4,7 +4,7 @@
 
 **AI/ML Engineer · Full Stack Developer · Problem Solver**
 
-B.Tech Artificial Intelligence & Machine Learning · CBIT Hyderabad · CGPA 9.12
+B.Tech Artificial Intelligence & Machine Learning · CBIT Hyderabad · CGPA 9.20
 
 [![Gmail](https://img.shields.io/badge/reddysathvik2005@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:reddysathvik2005@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/peesari-sathvik-reddy-881967322/)
@@ -83,15 +83,28 @@ Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027).
 
 ---
 
-## Certifications & Achievements
+## Certifications
 
 | | |
 |---|---|
 | AWS Certified Cloud Practitioner | Amazon Web Services |
-| Salesforce Certified Agentforce Specialist | Salesforce · 2025 |
 | Certificate of Proficiency in AI/ML | IIIT Hyderabad — iHub-Data · May–Sep 2025 |
+
+---
+
+## Achievements
+
+| | |
+|---|---|
 | Special Mention · Hacktoberfest 2025 | ~500 teams · product completeness & innovation |
 | Research Publication | ICAIATI-2025 · Zenvia · Under publication |
+
+---
+
+## Extracurricular
+
+| | |
+|---|---|
 | Vice President · Robotics & Innovation Club | CBIT · 2024–2026 |
 
 ---
@@ -105,8 +118,6 @@ Currently pursuing B.Tech in AI/ML at CBIT Hyderabad (2023–2027).
 [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat-square&logo=vercel&logoColor=white)](https://sathvik2954.netlify.app/)
 
 <div align="center">
-
-*"First, solve the problem. Then, write the code."* — John Johnson
 
 ⭐ If you find my work useful, drop a star! ⭐
 
